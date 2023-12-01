@@ -1,8 +1,8 @@
+import { useFecth } from "../customHooks/useFetch";
 
 const File = () => {
-  return (
-    <div>file-001</div>
-  )
-}
+  const [data] = useFecth("http://wwww.google.com/live/server");
+  return <div>file-001</div>;
+};
 
-export default File
+export default File;
