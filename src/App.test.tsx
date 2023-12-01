@@ -8,7 +8,7 @@ test('renders learn react link', () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-test.skip('renders learn react link only', () => {
+test.only('renders learn react link only', () => {
   render(<App />);
   const linkElement = screen.getByText(/learn /i);
   expect(linkElement).toBeInTheDocument();
