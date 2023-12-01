@@ -1,6 +1,6 @@
-const greet = () => {
+const greet = ({name}: {name?: string}) => {
   return (
-    <div>Hello</div>
+    <div>Hello {name}</div>
   )
 }
 
