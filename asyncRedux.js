@@ -1,5 +1,6 @@
-import { createStore } from "redux";
-
+import { createStore, applyMiddleware } from "redux";
+import { thunk } from "redux-thunk";
+import axios from "axios";
 const initialState = {
   loading: false,
   data: [],
@@ -53,5 +54,18 @@ const reducer = (state = initialState, action) => {
       return state;
   }
 };
+const fetchUsers = () => async (dispatch) => {
+  dispatch(fetchUsersRequested());
+  await axios
+    .get("https://jsonplaceholder.typicode.com/users")
+    .then((res) => {
+      const users = res.data.map((user) => user.id);
+      dispatch(fetchUsersSucceeded(users));
+    })
+    .catch((err) => dispatch(fetchUsersFailed(err.message)));
+};
+const middleware = [thunk];
+const store = createStore(reducer, applyMiddleware(...middleware));
 
-const store = createStore(reducer);
+store.subscribe(() => console.log(store.getState()));
+store.dispatch(fetchUsers());
