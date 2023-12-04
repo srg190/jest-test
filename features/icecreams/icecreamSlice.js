@@ -15,6 +15,16 @@ const icecreamSlice = createSlice({
       state.numOfIceCream += action.payload;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase("cake/ordered", (state) => {
+      state.numOfIceCream--;
+    });
+  },
+  //   extraReducers: (builder) => {
+  //     builder.addCase('we can directly pass the action', (state) => {
+  //       state.numOfIceCream--;
+  //     });
+  //   },
 });
 const { ordered, restocked } = icecreamSlice.actions;
 
