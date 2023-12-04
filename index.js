@@ -1,4 +1,4 @@
-import { createStore } from "redux";
+import { createStore, bindActionCreators } from "redux";
 const CAKE_ORDERED = "sfgsdg";
 const CAKE_RESTOCKED = "sfgsdf";
 // Action
@@ -45,8 +45,16 @@ console.log("Initial State ", store.getState());
 const unsubcribe = store.subscribe(() =>
   console.log("Updated State", store.getState())
 );
-store.dispatch(orderCake());
-store.dispatch(orderCake());
-store.dispatch(orderCake());
-store.dispatch(cakeRestocked(3));
+// store.dispatch(orderCake());
+// store.dispatch(orderCake());
+// store.dispatch(orderCake());
+// store.dispatch(cakeRestocked(3));
+
+// we can bind the actions
+const action = bindActionCreators({ orderCake, cakeRestocked }, store.dispatch);
+action.orderCake();
+action.orderCake();
+action.orderCake();
+action.cakeRestocked(3);
+
 unsubcribe();
