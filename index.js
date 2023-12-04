@@ -1,4 +1,12 @@
-import { createStore, bindActionCreators, combineReducers } from "redux";
+import {
+  createStore,
+  bindActionCreators,
+  combineReducers,
+  applyMiddleware,
+} from "redux";
+import logger from "redux-logger";
+
+const log = logger.createLogger({});
 const CAKE_ORDERED = "sfgsdg";
 const CAKE_RESTOCKED = "sfgsdf";
 const ICECREAM_ORDERED = "cfjnv";
@@ -83,12 +91,10 @@ const rootReducers = combineReducers({
   iceCream: iceCreamReducer,
 });
 // store only accept one reducer
-const store = createStore(rootReducers);
+const store = createStore(rootReducers, applyMiddleware(log));
 console.log("Initial State ", store.getState());
 
-const unsubcribe = store.subscribe(() =>
-  console.log("Updated State", store.getState())
-);
+const unsubcribe = store.subscribe(() => {});
 // store.dispatch(orderCake());
 // store.dispatch(orderCake());
 // store.dispatch(orderCake());
