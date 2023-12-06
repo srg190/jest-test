@@ -6,13 +6,15 @@ const Application = () => {
   };
   return (
     <>
+      <h1>Job Application Form</h1>
+      <h1>Section 2</h1>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div>
-          <label htmlFor="name"></label>
+          <label htmlFor="name">Name</label>
           <input type="text" id="name" />
         </div>
         <div>
-          <label htmlFor="bio"></label>
+          <label htmlFor="bio">Bio</label>
           <input type="text" id="bio" />
         </div>
         <div>
